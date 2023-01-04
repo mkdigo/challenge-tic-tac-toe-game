@@ -1,0 +1,141 @@
+main {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 3rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 1rem;
+
+  border: solid 2px var(--color-primary);
+  border-radius: 1rem;
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--color-green);
+    text-align: center;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+
+    cursor: pointer;
+  }
+}
+
+.score {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  width: 100%;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+
+    width: fit-content;
+    gap: 0.5rem;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .winner {
+      font-size: 0.75rem;
+      color: var(--color-green);
+    }
+
+    .turn {
+      font-size: 2rem;
+    }
+  }
+}
+
+ul.gameBox {
+  --block-size: 80px;
+
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 5px;
+  width: calc(var(--block-size) * 3 + 10px);
+
+  background: var(--color-primary);
+
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: var(--block-size);
+    height: var(--block-size);
+    font-size: 4rem;
+    line-height: 1;
+
+    background: var(--background);
+    user-select: none;
+
+    &.isClickable {
+      cursor: pointer;
+    }
+  }
+
+  .winLine {
+    position: absolute;
+    background: #900;
+    border-radius: 2.5px;
+
+    --position: 0;
+
+    &.horizontal {
+      height: 5px;
+      width: 100%;
+      top: calc(
+        (var(--block-size) / 2 + 2.5px) + (var(--block-size) + 5px) *
+          var(--position)
+      );
+    }
+
+    &.vertical {
+      width: 5px;
+      height: 100%;
+      left: calc(
+        (var(--block-size) / 2 - 2.5px) + (var(--block-size) + 5px) *
+          var(--position)
+      );
+    }
+
+    &.diagonal {
+      height: 5px;
+      width: 100%;
+      top: 50%;
+      transform: rotate(calc(45deg + 90deg * var(--position)));
+    }
+  }
+}
